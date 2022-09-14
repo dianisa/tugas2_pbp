@@ -1,15 +1,16 @@
-Nama        : Dianisa Wulandari
-NPM         : 2106702150
+Nama        : Dianisa Wulandari\nNPM         : 2106702150
 Kelas       : PBP A
 Kode Asdos  : LAH
 Link Heroku : https://katalog-tugas2pbp.herokuapp.com/katalog/
 
 Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html
+
 ![client request django drawio](https://user-images.githubusercontent.com/92663592/190253648-b7a19305-1477-4111-9c72-266e5ec7a21c.png)
 
 Request yang diterima dari client akan dirouting oleh urls.py ke views.py. File views.py berisi function yang menerima HttpRequest dan mengembalikan HttpResponse. Apabila terdapat request untuk read/write data, views.py akan berinteraksi dengan models.py. File models.py berisi data yang sudah diambil dari database. Kemudian, data akan dimasukkan ke katalog.html dan web page bisa ditampilkan
 
 Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+
 Virtual environment digunakan untuk menciptakan lingkungan yang eksklusif bagi suatu program. Perubahan-perubahan yang terjadi di luar virtual environment tidak akan memengaruhi keadaan virtual environment itu. Seiring berjalannya waktu, banyak terjadi perubahan pada modul-modul yang digunakan untuk membuat suatu program. Hal ini bisa menyebabkan program yang dahulu dibuat menjadi tidak compatible dengan modul-modul yang sudah mengalami perubahan tersebut. Dengan adanya virtual environment, kita dapat menyimpan modul-modul yang compatible saja dengan program tersebut. Kita tetap dapat membuat aplikasi web berbasis Django tanpa virtual environment. Akan tetapi, program harus disesuaikan kembali apabila terjadi perubahan pada modul-modul yang digunakan.
 
 Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas.
