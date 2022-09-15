@@ -1,26 +1,62 @@
-Nama : Dianisa Wulandari
+# Template Proyek Django PBP
 
-NPM : 2106702150
+Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
 
-Kelas : PBP A
+*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-Kode Asdos : LAH
+## Pendahuluan
 
-Link Heroku : https://katalog-tugas2pbp.herokuapp.com/katalog/
+Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
 
-Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html
+## Cara Menggunakan
 
-![client request django drawio](https://user-images.githubusercontent.com/92663592/190253648-b7a19305-1477-4111-9c72-266e5ec7a21c.png)
+Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
 
-Request yang diterima dari client akan dirouting oleh urls.py ke views.py. File views.py berisi function yang menerima HttpRequest dan mengembalikan HttpResponse. Apabila terdapat request untuk read/write data, views.py akan berinteraksi dengan models.py. File models.py berisi data yang sudah diambil dari database. Kemudian, data akan dimasukkan ke katalog.html dan web page bisa ditampilkan
+1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
+   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
+2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
+   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
+   berkas (_filesystem_) komputermu:
 
-Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+   ```shell
+   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
+   ```
+3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
+   untuk menyalakan _virtual environment_:
 
-Virtual environment digunakan untuk menciptakan lingkungan yang eksklusif bagi suatu program. Perubahan-perubahan yang terjadi di luar virtual environment tidak akan memengaruhi keadaan virtual environment itu. Seiring berjalannya waktu, banyak terjadi perubahan pada modul-modul yang digunakan untuk membuat suatu program. Hal ini bisa menyebabkan program yang dahulu dibuat menjadi tidak compatible dengan modul-modul yang sudah mengalami perubahan tersebut. Dengan adanya virtual environment, kita dapat menyimpan modul-modul yang compatible saja dengan program tersebut. Kita tetap dapat membuat aplikasi web berbasis Django tanpa virtual environment. Akan tetapi, program harus disesuaikan kembali apabila terjadi perubahan pada modul-modul yang digunakan.
+   ```shell
+   python -m venv env
+   ```
+4. Nyalakan environment dengan perintah berikut:
 
-Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas.
+   ```shell
+   # Windows
+   .\env\Scripts\activate
+   # Linux/Unix, e.g. Ubuntu, MacOS
+   source env/bin/activate
+   ```
+5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
 
-Pada views.py, dibuat sebuah fungsi yang akan menerima HttpRequest, mengambil data dari models.py dan mereturn HttpResponse. Pengambilan data dilakukan dengan cara memanggil CatalogItem.objects.all() dan menyimpannya dalam variabel data_barang_katalog. Kemudian, dibuat dictionary context untuk menyimpan data_barang_katalog. Dictionary tersebut akan ditampilkan pada file katalog.html dengan proses looping.
-Routing dilakukan dengan mendaftarkan fungsi path('', show_katalog, name='show_katalog') pada list urlpatterns. fungsi path akan melakukan routing ke fungsi pada views.py yang sesuai dan mengembalikan urlpattern.
-Pemetaan data ke katalog.html dilakukan dengan looping. QuerySet yang tersimpan dengan key item_katalog akan diloop dan ditampilkan seluruh attributenya (item_name, item_price, item_stock, rating, description, item_url)
-Pertama, push seluruh file program yang sudah dibuat ke github. kedua, buat aplikasi di heroku dengan menekan tombol create new app. ketiga, copy API key dari heroku dan simpan sebagai secrets di github. Buat secrets yang berisi nama aplikasi sesuai yang terdaftar pada heroku juga. Terakhir, jalankan kembali workflow commit dan deployment di github.
+   ```shell
+   pip install -r requirements.txt
+   ```
+
+6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
+   lokal:
+
+   ```shell
+   python manage.py runserver
+   ```
+7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+
+## Contoh Deployment 
+
+Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
+
+Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
+
+Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
+
+## Credits
+
+Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
