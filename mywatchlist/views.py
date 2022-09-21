@@ -6,6 +6,8 @@ from django.core import serializers
 
 def show_mywatchlist(request):
     data_mywatchlist = MyWatchList.objects.all()
+
+    # membandingkan jumlah film yang sudah ditonton dan belum ditonton
     num_watched = 0
     num_not_watched = 0
     message = "Wah, kamu masih sedikit menonton!"
@@ -18,6 +20,8 @@ def show_mywatchlist(request):
 
     if num_watched >= num_not_watched:
         message = "Selamat, kamu sudah banyak menonton!"
+
+    # context
     context = {
         'watch_list': data_mywatchlist,
         'message': message
