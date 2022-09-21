@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "Big Hero 6",
+            "rating": 5,
+            "release_date": "21 September 2019",
+            "review": "wholesome sekali, sy nangis"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Moana",
+            "rating": 5,
+            "release_date": "19 Agustus 2020",
+            "review": "visualnya keren :D"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Frozen 1",
+            "rating": 3,
+            "release_date": "14 Juni 2016",
+            "review": "merinding euy denger lagunya"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": true,
+            "title": "Frozen 2",
+            "rating": 2,
+            "release_date": "20 Oktober 2020",
+            "review": "b aja, ketinggian ekspektasi :("
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Inside Out",
+            "rating": 3,
+            "release_date": "11 Januari 2010",
+            "review": "lumayan lah"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "Encanto",
+            "rating": 5,
+            "release_date": "3 Mei 2019",
+            "review": "lagunya enakk, ikut nyanyi"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Turning Red",
+            "rating": 5,
+            "release_date": "17 Oktober 2021",
+            "review": "sgt rilet"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": true,
+            "title": "Black Widow",
+            "rating": 4,
+            "release_date": "15 Juli 2018",
+            "review": "ya Allah Mba Florence"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "Shang-Chi",
+            "rating": 5,
+            "release_date": "30 November 2020",
+            "review": "NI KEREN BGT SUMPAH"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": false,
+            "title": "Maleficent",
+            "rating": 3,
+            "release_date": "2 Februari 2002",
+            "review": "blom nonton, pemeran utamanya serem"
+        }
+    }
+]
