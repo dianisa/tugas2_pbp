@@ -7,8 +7,11 @@ Kelas		: F
 Kode Asdos	: LAH
 
 Link Heroku : https://tugas-pbp-dian.herokuapp.com/mywatchlist/
+
               https://tugas-pbp-dian.herokuapp.com/mywatchlist/html/
+
               https://tugas-pbp-dian.herokuapp.com/mywatchlist/json/
+              
               https://tugas-pbp-dian.herokuapp.com/mywatchlist/xml/
 
 Tugas 3
