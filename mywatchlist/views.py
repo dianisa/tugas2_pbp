@@ -24,11 +24,13 @@ def show_mywatchlist(request):
     # context
     context = {
         'watch_list': data_mywatchlist,
+        'nama': 'Dianisa Wulandari',
+        'npm': '2106702150',
         'message': message
     }
     return render(request, "mywatchlist.html", context)
 
-def show_mywatchlist_id(request):
+def show_mywatchlist_json_xml(request):
     data = MyWatchList.objects.all()
     
     if ("json" in request.path):
