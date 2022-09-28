@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>4th Assignment PBP/PBD:</h1>
+  <p>By {{nama}} {{npm}}</p>
+
+  <h2>Welcome! {{user.username}}</h2>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Date Added</th>
+    </tr>
+
+    {% for task in to_do_list %}
+      {% if task.user == user %}
+      <tr>
+          <th>{{task.title}}</th>
+          <th>{{task.description}}</th>
+          <th>{{task.date}}</th>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+
+  {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}  
+
+  <button><a href="{% url 'todolist:show_create_task' %}">Create Task</a></button>
+  <button><a href="{% url 'todolist:show_logout' %}">Logout</a></button>
+
+ {% endblock content %}
