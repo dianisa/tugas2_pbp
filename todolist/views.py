@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 import datetime
 
 @login_required(login_url='/todolist/login/')
@@ -28,7 +30,9 @@ def show_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('todolist:show_todolist')
+            response = HttpResponseRedirect(reverse("todolist:show_todolist"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
         else:
             messages.info(request, 'Username atau Password salah!')
 
@@ -63,4 +67,6 @@ def show_create_task(request):
 
 def show_logout(request):
     logout(request)
-    return redirect('todolist:show_login')
+    response = HttpResponseRedirect(reverse('todolist:show_login'))
+    response.delete_cookie('last_login')
+    return response
