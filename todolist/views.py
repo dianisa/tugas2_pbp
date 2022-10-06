@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
+from django.contrib.auth.models import User
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
@@ -40,16 +41,25 @@ def show_login(request):
     return render(request, 'login.html', context)
 
 def show_register(request):
-    form = forms.UserCreationForm()
-
     if request.method == "POST":
-        form = forms.UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Akun telah berhasil dibuat!')
-            return redirect('todolist:show_login')
-    
-    context = {'form':form}
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if username and password1 and password2:
+            if password1 != password2:
+                messages.info(request, 'Password berbeda!')
+            else:
+                try:
+                    createUser = User.objects.create(username=username)
+                    createUser.set_password(password1)
+                    createUser.save()
+                    messages.success(request, 'Akun telah berhasil dibuat!')
+                    return redirect('todolist:show_login')
+                except:
+                    messages.info(request, 'Username sudah pernah digunakan!')
+        else:
+            messages.info(request, 'Semua harus terisi!')
+    context = {}
     return render(request, 'register.html', context)
 
 def show_create_task(request):

@@ -5,41 +5,35 @@
 {% endblock meta %}
 
 {% block content %}
-
-<div class = "login">
-
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
+<div class="d-flex flex-column justify-content-center align-items-center text-white" style="min-width: 20rem; min-height: 600px">
+    <div><h2>Welcome to TodoList!</h2></div>
+    <div class="card text-white bg-dark" style="min-width: 20rem; min-height: 400px">
+        <div class="d-flex flex-column justify-content-center align-items-center"  style="row-gap: 20px">
+            <div class="card-header"><h1>Login</h1></div>
+            <div class="card-body">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                        <div><h6>Username: </h6></div>
+                        <div><input type="text" name="username" placeholder="Username" class="form-control"></div>    
+                        <div><h6>Password: </h6></div>
+                        <div><input type="password" name="password" placeholder="Password" class="form-control"></div>
+                        <div><input class="btn btn-secondary login_btn" type="submit" value="Login"></div>
+                </form>
+            </div>
+            <div class="card-footer d-flex flex-column justify-content-center align-items-center">
+                <div>Have no account?</div>
+                <div><a href="{% url 'todolist:show_register' %}">Create Account</a></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if messages %}
         <ul>
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
-    {% endif %}     
-        
-    Have no account? <a href="{% url 'todolist:show_register' %}">Create Account</a>
-
+        {% endif %} 
+    </div>
 </div>
-
 {% endblock content %}
