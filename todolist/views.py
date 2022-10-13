@@ -6,23 +6,19 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import datetime
 from django.contrib.auth.models import User
+from django.core import serializers
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    user = request.user
-    data_todolist = Task.objects.all()
-
     context = {
-        'to_do_list': data_todolist,
-        'nama': 'Dianisa Wulandari',
-        'npm': ' NPM 2106702150',
-        'user': user
-    }
-    return render(request, "todolist.html", context)
+    'nama': 'Dianisa Wulandari',
+    'npm': 'NPM 2106702150',
+    } 
+    return render(request, "todolist_ajax.html", context)
 
 def show_login(request):
     if request.method == 'POST':
@@ -75,8 +71,24 @@ def show_create_task(request):
     context = {}
     return render(request, "create.html", context)
 
+def tambah_todolist(request):
+    if request.method == 'POST':
+        title = request.POST.get('get_title')
+        description = request.POST.get('get_description')
+
+        task_object = Task(user = request.user, title = title,\
+                    date = datetime.date.today(), description = description)
+
+        task_object.save()
+        return render(request, 'todolist_ajax.html')
+    return render(request, 'todolist_ajax.html')
+
 def show_logout(request):
     logout(request)
     response = HttpResponseRedirect(reverse('todolist:show_login'))
     response.delete_cookie('last_login')
     return response
+
+def show_todolist_json(request):
+    data = Task.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")

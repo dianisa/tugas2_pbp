@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <div id = 'todolist_card' class = "d-flex flex-column justify-content-center align-items-center text-white" style="min-width: 20rem; min-height: 600px; row-gap: 30px"></div>  
+
+  <!-- Modal -->
+  <div class="modal fade" id="createTask" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Create your task!</h1>
+        </div>
+        <form method="POST" action="" id="submit_todolist">
+            {% csrf_token %}
+        <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>Title: </td>
+                        <td><input required type="text" name="get_title" placeholder="Enter title" class="form-control"></td>
+                    </tr>
+        
+                    <tr>
+                        <td>Description: </td>
+                        <td><input required type="text" name="get_description" placeholder="Enter description" class="form-control"></td>
+                    </tr>
+                </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-secondary" id="create" data-bs-dismiss="modal"><a href="{% url 'todolist:tambah_todolist' %}">Create Task</a></button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function getTodolist() {
+      return fetch("{% url 'todolist:show_todolist_json' %}").then((res) => res.json())
+    }
+  
+    async function refreshTodolist() {
+          document.getElementById("todolist_card").innerHTML = ""
+          const todolist = await getTodolist()
+          let htmlString = `<h2>Welcome! {{user.username}}</h2>`
+          todolist.forEach((item) => {
+            htmlString += `\n<div class="card text-white bg-dark" style="min-width: 20rem; min-height: 100px">
+                                <table>
+                                    <tr>
+                                        <td>Title : </td>
+                                        <td>${item.fields.title}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description : </td>
+                                        <td>${item.fields.description}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Added : </td>
+                                        <td>${item.fields.date}</td>
+                                    </tr>
+                                </table>
+                                </div>` 
+          })
+
+          htmlString += `\n <table>
+                                <tr>
+                                    <td><button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#createTask">
+                                        Create Task
+                                    </button></td>
+                                    <td><button type="button" class="btn btn-dark"><a href="{% url 'todolist:show_logout' %}">Logout</a></button></td>
+                                </tr>
+                            </table>`
+  
+          document.getElementById("todolist_card").innerHTML = htmlString
+    }
+  
+    function addTodolist() {
+      fetch("{% url 'todolist:tambah_todolist' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#submit_todolist'))
+        }).then(refreshTodolist)
+      return false
+    }
+  
+    document.getElementById("create").onclick = addTodolist
+    refreshTodolist()
+  </script>
+
+  {% endblock content %}
